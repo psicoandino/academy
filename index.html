@@ -1,74 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SoyAutoconocimiento — Laboratorio de 16 layouts</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SoyAutoconocimiento — Catálogo tripartito v6</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
-:root{--night:#071426;--midnight:#153055;--deep:#16315b;--paper:#f3f0ea;--stone:#d8d1c6;--gold:#c8a15a;--gold-soft:#dfc48f;--gold-dark:#a17b3e;--ink:#1c2430;--ink-soft:#556070}
-*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--paper);font-family:Inter,sans-serif}button{font:inherit}.topbar{position:sticky;top:0;z-index:30;background:rgba(7,20,38,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(223,196,143,.16);padding:15px 20px}.topbar-inner{max-width:1500px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font:500 28px "Cormorant Garamond",serif;color:var(--gold-soft)}.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,240,234,.48)}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.control{border:1px solid rgba(223,196,143,.2);background:rgba(255,255,255,.03);color:var(--paper);padding:9px 12px;border-radius:999px;cursor:pointer}.control:hover,.control.active{border-color:var(--gold);background:rgba(200,161,90,.11)}.intro{max-width:1500px;margin:auto;padding:22px 20px 8px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end}.intro h1{margin:0;font:500 clamp(30px,4vw,52px) "Cormorant Garamond",serif}.intro p{max-width:800px;margin:8px 0 0;color:rgba(243,240,234,.68);font-size:13px;line-height:1.6}.status{font-size:12px;color:var(--gold-soft);text-align:right}.matrix{max-width:1500px;margin:auto;padding:18px 20px 60px;display:grid;grid-template-columns:repeat(4,minmax(250px,1fr));gap:18px}.card{background:rgba(255,255,255,.025);border:1px solid rgba(223,196,143,.13);border-radius:18px;padding:12px;transition:.22s}.card:hover{transform:translateY(-3px);border-color:rgba(223,196,143,.35)}.card.is-favorite{border-color:var(--gold);box-shadow:0 0 0 1px rgba(200,161,90,.18),0 18px 44px rgba(0,0,0,.24)}.card-head{display:flex;justify-content:space-between;gap:8px;align-items:start;margin-bottom:10px}.code{font:500 23px "Cormorant Garamond",serif;color:var(--gold-soft)}.label{text-align:right;font-size:10px;line-height:1.45;color:rgba(243,240,234,.55)}.actions{display:flex;gap:7px;margin-top:10px}.actions button{flex:1;border:1px solid rgba(223,196,143,.15);background:rgba(255,255,255,.025);color:rgba(243,240,234,.72);padding:8px;border-radius:10px;cursor:pointer;font-size:11px}.actions button:hover,.actions button.active{border-color:var(--gold);color:var(--gold-soft);background:rgba(200,161,90,.1)}
-.flyer{width:100%;aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);box-shadow:0 20px 50px rgba(0,0,0,.3)}.photo{background:url('tarot-course-source.png') center/cover no-repeat}.kicker{font:600 7px Inter,sans-serif;letter-spacing:.17em;text-transform:uppercase}.title{margin:0;font:500 clamp(31px,3.8vw,52px)/.88 "Cormorant Garamond",serif}.subtitle{font:italic clamp(12px,1.45vw,18px) "Cormorant Garamond",serif}.details{font-size:7px;line-height:1.55}.meta{font-size:6.5px;line-height:1.55;letter-spacing:.03em}.rule{width:38px;height:1px;background:var(--gold)}
-/* A — Divididos */
-.l-a1{display:grid;grid-template-columns:44% 56%}.l-a1 .copy{padding:9% 8%;display:flex;flex-direction:column;justify-content:space-between}.l-a1 .title,.l-a2 .title,.l-a3 .title,.l-a4 .title{color:var(--midnight)}.l-a1 .subtitle,.l-a2 .subtitle,.l-a3 .subtitle,.l-a4 .subtitle{color:var(--gold-dark)}
-.l-a2{display:grid;grid-template-columns:58% 42%}.l-a2 .copy{padding:8%;display:flex;flex-direction:column;justify-content:center;gap:15px}.l-a2 .foot{margin-top:auto}.l-a2 .photo{order:-1}
-.l-a3{display:grid;grid-template-rows:43% 57%}.l-a3 .copy{padding:6% 8%;display:grid;grid-template-columns:1.2fr .8fr;gap:12px;align-items:end}.l-a3 .main{align-self:center}.l-a3 .side{border-left:1px solid rgba(161,123,62,.28);padding-left:12px}
-.l-a4{display:grid;grid-template-rows:56% 44%}.l-a4 .copy{padding:5% 7% 7%;display:grid;grid-template-columns:1fr auto;gap:9px 12px;align-items:end}.l-a4 .photo{margin:4%;border-radius:14px}.l-a4 .side{writing-mode:vertical-rl;transform:rotate(180deg);border-left:1px solid rgba(161,123,62,.28);padding-left:8px}
-/* B — Full bleed */
-.l-b1,.l-b2,.l-b3,.l-b4{position:relative;color:var(--paper)}.l-b1:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,20,38,.94),rgba(7,20,38,.54) 55%,transparent 84%)}.l-b1 .copy{position:relative;height:100%;max-width:70%;padding:9%;display:flex;flex-direction:column;justify-content:space-between}
-.l-b2:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,20,38,.96),rgba(7,20,38,.45) 46%,transparent 72%)}.l-b2 .copy{position:absolute;left:0;right:0;bottom:0;padding:9%;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.l-b2 .title{font-size:clamp(35px,4.5vw,59px)}.l-b2 .meta{text-align:right;color:var(--gold-soft)}
-.l-b3:before{content:"";position:absolute;inset:0;background:rgba(7,20,38,.46)}.l-b3 .frame{position:absolute;inset:6%;border:1px solid rgba(223,196,143,.52);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8%}.l-b3 .title{font-size:clamp(39px,5vw,64px)}.l-b3 .details{margin-top:18px;max-width:78%}
-.l-b4:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 47%,rgba(7,20,38,.9) 57%)}.l-b4 .copy{position:absolute;right:0;top:0;bottom:0;width:48%;padding:8%;display:flex;flex-direction:column;justify-content:space-between}.l-b4 .title{font-size:clamp(33px,4vw,52px)}
-/* C — Modulares */
-.l-c1{padding:5%;display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:auto 1fr auto;gap:4%;background:var(--paper)}.l-c1 .photo{grid-row:1/4;border-radius:13px}.l-c1 .title{color:var(--midnight)}.l-c1 .subtitle{color:var(--gold-dark)}
-.l-c2{padding:5%;display:grid;grid-template:1fr 1fr/1fr 1fr;gap:4%;background:var(--paper)}.l-c2 .photo{grid-column:2;grid-row:1/3;border-radius:13px}.l-c2 .title{color:var(--midnight);align-self:end}.l-c2 .bottom{align-self:end;border-top:1px solid rgba(161,123,62,.25);padding-top:10px}
-.l-c3{padding:5%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:38% 1fr;gap:4%;background:var(--paper)}.l-c3 .photo{grid-column:1/3;border-radius:13px}.l-c3 .title{color:var(--midnight)}.l-c3 .right{border-left:1px solid rgba(161,123,62,.25);padding-left:12px;align-self:end}
-.l-c4{padding:5%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr auto;gap:3%;background:var(--paper)}.l-c4 .photo{grid-column:1/4;border-radius:13px}.l-c4 .title{font-size:clamp(27px,3vw,42px);color:var(--midnight)}.l-c4 .center{text-align:center}.l-c4 .right{text-align:right;color:var(--ink-soft)}
-/* D — Cartel / tipográfico */
-.l-d1{padding:6%;display:grid;grid-template-rows:auto 1fr auto;background:var(--midnight);color:var(--paper)}.l-d1:before{content:"";position:absolute;inset:3%;border:1px solid rgba(223,196,143,.34)}.l-d1 .head{text-align:center;z-index:1}.l-d1 .photo{margin:4% 7%;clip-path:polygon(8% 0,92% 0,100% 8%,100% 92%,92% 100%,8% 100%,0 92%,0 8%)}.l-d1 .foot{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;z-index:1}.l-d1 .meta{text-align:right;color:var(--gold-soft)}
-.l-d2{display:grid;grid-template-columns:22% 78%;background:var(--midnight);color:var(--paper)}.l-d2 .rail{padding:18% 10%;border-right:1px solid rgba(223,196,143,.32);display:flex;flex-direction:column;justify-content:space-between;align-items:center}.l-d2 .rail .kicker{writing-mode:vertical-rl;transform:rotate(180deg)}.l-d2 .main{display:grid;grid-template-rows:auto 1fr auto;padding:7%}.l-d2 .photo{margin:6% 0}.l-d2 .title{font-size:clamp(35px,4.4vw,58px)}
-.l-d3{background:var(--paper);padding:7%;display:flex;flex-direction:column}.l-d3 .title{font-size:clamp(46px,6.5vw,83px);color:var(--midnight);line-height:.74;letter-spacing:-.03em}.l-d3 .subtitle{margin-top:10px;color:var(--gold-dark)}.l-d3 .photo{height:42%;margin:8% 0}.l-d3 .foot{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}.l-d3 .meta{text-align:right;color:var(--ink-soft)}
-.l-d4{background:var(--midnight);color:var(--paper);display:grid;place-items:center;padding:7%}.l-d4 .circle{width:78%;aspect-ratio:1;border-radius:50%;background:url('tarot-course-source.png') center/cover no-repeat;position:relative;display:grid;place-items:center;text-align:center;padding:14%;overflow:hidden}.l-d4 .circle:before{content:"";position:absolute;inset:0;background:rgba(7,20,38,.46)}.l-d4 .inner{position:relative}.l-d4 .title{font-size:clamp(34px,4.5vw,58px)}.l-d4 .meta{position:absolute;left:7%;right:7%;bottom:5%;display:flex;justify-content:space-between;color:var(--gold-soft)}
-.compare{position:fixed;inset:auto 0 0;z-index:50;background:rgba(7,20,38,.98);border-top:1px solid rgba(223,196,143,.22);padding:14px 20px;transform:translateY(110%);transition:.3s}.compare.open{transform:none}.compare-inner{max-width:1100px;margin:auto}.compare-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.compare-head strong{font:500 22px "Cormorant Garamond",serif;color:var(--gold-soft)}.close{border:0;background:transparent;color:var(--paper);font-size:26px;cursor:pointer}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.slot{min-height:160px;border:1px dashed rgba(223,196,143,.25);border-radius:12px;padding:10px;display:grid;place-items:center;color:rgba(243,240,234,.45);font-size:12px}.slot .flyer{max-width:260px}
-@media(max-width:1150px){.matrix{grid-template-columns:repeat(2,minmax(250px,1fr))}}@media(max-width:650px){.topbar-inner,.intro{display:grid;grid-template-columns:1fr}.status{text-align:left}.matrix{grid-template-columns:1fr;padding-inline:12px}.compare-grid{grid-template-columns:1fr}.compare{max-height:78vh;overflow:auto}}
+:root{
+  --night:#071426;--mid:#153055;--deep:#16315b;--paper:#f3f0ea;--stone:#d8d1c6;
+  --gold:#c8a15a;--gold2:#dfc48f;--ink:#1c2430;--muted:#68717d;
+  --ok:#86a36d;--adjust:#d0a45d;--bad:#c66b6b;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--night);color:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr) 360px;min-height:100vh;max-width:100vw;overflow-x:hidden;align-items:start}
+.panel{position:sticky;top:0;height:100vh;overflow:auto;padding:22px;background:#0b1a2e;border-right:1px solid rgba(223,196,143,.16)}
+.brand{font:500 29px/1.05 Georgia,serif;color:var(--gold2)}
+.small{font-size:11px;line-height:1.55;color:rgba(243,240,234,.58)}
+.notice{margin-top:14px;padding:11px 12px;border:1px solid rgba(223,196,143,.15);border-radius:12px;background:rgba(255,255,255,.025)}
+.fields{display:grid;gap:12px;margin-top:18px}
+.field{display:grid;gap:6px}
+.field label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.field input,.field textarea{width:100%;border:1px solid rgba(223,196,143,.18);background:rgba(255,255,255,.035);color:var(--paper);border-radius:10px;padding:10px 11px;outline:none;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--gold)}
+.count{font-size:10px;text-align:right;color:rgba(243,240,234,.42)}
+.count.warn{color:#f2b36f}.count.over{color:#ef8888}
+.panel-actions{display:flex;gap:8px;margin-top:16px;position:sticky;bottom:0;padding:12px 0 2px;background:linear-gradient(transparent,#0b1a2e 28%)}
+.panel-actions button{flex:1;border:1px solid rgba(223,196,143,.2);background:#0b1a2e;color:var(--paper);border-radius:999px;padding:9px}
+.panel-actions button:hover{border-color:var(--gold);color:var(--gold2)}
+.workspace{min-width:0;grid-column:2;overflow-x:hidden}
+.top{position:sticky;top:0;z-index:20;padding:13px 18px;background:rgba(7,20,38,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(223,196,143,.14);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.top h1{font:500 30px/1 Georgia,serif;margin:0}
+.statusbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.statuspill{font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.12);padding:6px 9px;border-radius:999px;color:rgba(255,255,255,.72)}
+.grid{padding:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start;min-width:0;overflow-x:hidden}
+.card{min-width:0;padding:10px;border:1px solid rgba(223,196,143,.13);border-radius:16px;background:rgba(255,255,255,.025);display:grid;grid-template-rows:auto auto auto;align-content:start;overflow:hidden}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.code{font:500 22px/1 Georgia,serif;color:var(--gold2)}
+.name{font-size:10px;line-height:1.35;text-align:right;color:rgba(243,240,234,.55)}
+.badge{display:inline-flex;align-items:center;gap:5px;margin-top:4px;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.ok{color:var(--ok)}.badge.adjusted{color:var(--adjust)}.badge.excessive{color:var(--bad)}
+.sheet{--density:1;--title-scale:1;--body-scale:1;--space-scale:1;width:100%;min-width:0;height:auto;aspect-ratio:4/5;background:var(--paper);color:var(--ink);position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28);container-type:inline-size;contain:layout paint size;isolation:isolate}
+.sheet .zone{min-width:0;min-height:0;max-width:100%}
+.sheet>*{min-width:0;max-width:100%}
+.sheet::after{content:"";position:absolute;inset:5.2%;pointer-events:none;border:1px dashed rgba(200,161,90,.14);z-index:20}
+.card:hover .sheet::after{border-color:rgba(200,161,90,.3)}
+.canvas-meta{display:flex;justify-content:space-between;gap:8px;margin:7px 0 0;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:rgba(243,240,234,.4)}
+.kicker{font-size:calc(2.15cqw * var(--body-scale));line-height:1.2;letter-spacing:.17em;text-transform:uppercase;color:#8b6f39}
+.title{font:600 calc(11.5cqw * var(--title-scale))/.9 Georgia,serif;margin:0;color:var(--mid);overflow-wrap:anywhere}
+.subtitle{font:italic calc(4.1cqw * var(--body-scale))/1.16 Georgia,serif;color:#9b7441;overflow-wrap:anywhere}
+.desc,.content,.ops,.cta,.mark{font-size:calc(2.25cqw * var(--body-scale));line-height:1.45;overflow-wrap:anywhere}
+.cta{font-weight:700;letter-spacing:.045em}.mark{letter-spacing:.12em;text-transform:uppercase}.rule{height:1px;background:var(--gold);width:13cqw;flex:none}
+.empty:empty{display:none}.label{font-size:1.8cqw;letter-spacing:.13em;text-transform:uppercase;color:#9b7441;margin-bottom:1.4cqw}
+.stack{display:grid;gap:calc(2.3cqw * var(--space-scale))}.microstack{display:grid;gap:calc(1.2cqw * var(--space-scale))}
+.sheet.adjust-1{--title-scale:.92;--body-scale:.95;--space-scale:.82}
+.sheet.adjust-2{--title-scale:.84;--body-scale:.89;--space-scale:.65}
+.sheet.adjust-3{--title-scale:.76;--body-scale:.82;--space-scale:.5}
+.sheet.excessive{outline:2px solid rgba(198,107,107,.9);outline-offset:-2px}
+.card-actions{display:flex;gap:7px;margin-top:8px}.card-actions button{flex:1;border:1px solid rgba(223,196,143,.16);background:transparent;color:rgba(243,240,234,.7);border-radius:9px;padding:7px;font-size:11px}.card-actions button.active{border-color:var(--gold);color:var(--gold2)}
+
+
+/* FASE 2 — ZONA DE IMAGEN Y HANDOFF */
+.image-controls{margin-top:16px;padding:13px;border:1px solid rgba(223,196,143,.16);border-radius:14px;background:rgba(255,255,255,.025);display:grid;gap:10px}
+.image-controls h2{margin:0;font:500 18px/1.1 Georgia,serif;color:var(--gold2)}
+.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.segmented button{border:1px solid rgba(223,196,143,.18);background:transparent;color:rgba(243,240,234,.65);padding:7px 5px;border-radius:8px;font-size:10px;line-height:1.2}
+.segmented button.active{border-color:var(--gold);background:rgba(200,161,90,.12);color:var(--gold2)}
+.upload-row{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center}.upload-row input{min-width:0;font-size:10px;color:rgba(243,240,234,.65)}
+.upload-row button,.handoff-actions button{border:1px solid rgba(223,196,143,.18);background:transparent;color:var(--paper);border-radius:8px;padding:7px 9px;font-size:10px}
+.selected-info{padding:9px;border-left:2px solid var(--gold);background:rgba(200,161,90,.06);font-size:10px;line-height:1.5;color:rgba(243,240,234,.72)}
+.handoff-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}.handoff-actions button:hover,.upload-row button:hover{border-color:var(--gold);color:var(--gold2)}
+.card{transition:border-color .2s ease,box-shadow .2s ease}.card.selected{border-color:rgba(223,196,143,.72);box-shadow:0 0 0 2px rgba(200,161,90,.12)}
+.sheet{--image-opacity:0}
+.sheet>.image-region{position:absolute;z-index:0;overflow:hidden;pointer-events:none;background:#d8d1c6;border:0 solid rgba(161,123,62,.45);opacity:var(--image-opacity)}
+.sheet>.image-region img{width:100%;height:100%;object-fit:cover;object-position:var(--image-focus,center);display:block}
+.sheet>.image-region::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,20,38,.03),rgba(243,240,234,.28))}
+.sheet.mode-zone{--image-opacity:1}.sheet.mode-zone>.image-region{background:repeating-linear-gradient(135deg,#e3ddd1 0 10px,#d9d1c3 10px 20px);border-width:1px;border-style:dashed}
+.sheet.mode-zone>.image-region::before{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;padding:8%;text-align:center;font-size:2.1cqw;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;color:#735d37;z-index:2}
+.sheet.mode-real{--image-opacity:1}.sheet.mode-real>.image-region:not(.has-image){background:repeating-linear-gradient(135deg,#e3ddd1 0 10px,#d9d1c3 10px 20px);border:1px dashed rgba(161,123,62,.45)}
+.sheet.mode-real>.image-region:not(.has-image)::before{content:"Carga una imagen";position:absolute;inset:0;display:grid;place-items:center;font-size:2cqw;letter-spacing:.1em;text-transform:uppercase;color:#735d37;z-index:2}
+.sheet>.image-region.has-image::after{background:var(--image-wash,linear-gradient(135deg,rgba(7,20,38,.06),rgba(243,240,234,.12)))}
+.sheet>*:not(.image-region){position:relative;z-index:2}
+/* Regiones de imagen por layout. Las coordenadas son parte del contrato exportable. */
+.sheet.l1>.image-region{left:0;top:0;width:100%;height:34%;--image-focus:center 38%}.sheet.l1{padding-top:39%}
+.sheet.l2>.image-region{right:0;top:0;width:42%;height:100%;--image-focus:center}.sheet.l2{--image-wash:linear-gradient(90deg,rgba(243,240,234,.08),rgba(7,20,38,.12))}
+.sheet.l3>.image-region{left:18%;top:31%;width:64%;height:31%;--image-focus:center}
+.sheet.l4>.image-region{left:15%;top:0;width:85%;height:39%;--image-focus:center 35%}.sheet.l4 .canvas{padding-top:48%}
+.sheet.l5>.image-region{right:0;top:0;width:48%;height:62%;--image-focus:center}
+.sheet.l6>.image-region{left:50%;top:0;width:50%;height:72%;--image-focus:center}.sheet.l6 .main{background:rgba(243,240,234,.82)}
+.sheet.l7>.image-region{left:0;bottom:0;width:46%;height:48%;--image-focus:center}
+.sheet.l8>.image-region{left:0;top:0;width:37%;height:100%;--image-focus:center}.sheet.l8 .aside{background:rgba(230,223,211,.84)}
+.sheet.l9>.image-region{left:0;top:0;width:100%;height:100%;--image-focus:center}.sheet.l9{--image-wash:linear-gradient(180deg,rgba(243,240,234,.9),rgba(243,240,234,.72))}
+.sheet.l10>.image-region{right:6%;top:7%;width:38%;height:31%;--image-focus:center}
+.sheet.l11>.image-region{left:8%;top:27%;width:84%;height:30%;--image-focus:center}
+.sheet.l12>.image-region{right:0;top:0;width:52%;height:100%;--image-focus:center}.sheet.l12{--image-wash:linear-gradient(90deg,rgba(243,240,234,.06),rgba(243,240,234,.18))}
+.sheet.l13>.image-region{left:0;top:0;width:100%;height:26%;--image-focus:center 35%}.sheet.l13{padding-top:33%}
+.sheet.l14>.image-region{left:0;bottom:0;width:100%;height:34%;--image-focus:center 64%}.sheet.l14{padding-bottom:39%}
+.sheet.l15>.image-region{right:0;top:18%;width:44%;height:52%;--image-focus:center}
+.sheet.l16>.image-region{left:50%;top:50%;width:58%;height:58%;transform:translate(-50%,-50%);border-radius:50%;--image-focus:center}.sheet.l16{--image-wash:radial-gradient(circle,rgba(243,240,234,.12),rgba(243,240,234,.68))}
+
+
+/* 16 identidades estructurales: cada una tiene una organización distinta */
+.l1{padding:8%;display:grid;grid-template-rows:auto 1fr auto;gap:5%}.l1 .main{align-self:center}.l1 .footer{display:grid;grid-template-columns:1fr auto;gap:7%;align-items:end}
+.l2{display:grid;grid-template-columns:58% 42%;grid-template-rows:auto 1fr auto}.l2 .header{grid-column:1/3;padding:8% 8% 4%}.l2 .main{grid-column:1;padding:5% 8%;align-self:center}.l2 .aside{grid-column:2;grid-row:2/4;border-left:1px solid #cbb787;padding:10%;display:flex;flex-direction:column;justify-content:space-between}.l2 .footer{grid-column:1;padding:5% 8% 8%}
+.l3{padding:9%;display:grid;grid-template-rows:auto 1fr auto;text-align:center;gap:4%}.l3 .header{max-width:85%;justify-self:center}.l3 .main{align-self:center}.l3 .rule{margin-inline:auto}.l3 .footer{display:grid;gap:2%;justify-items:center}
+.l4{display:grid;grid-template-columns:15% 85%}.l4 .rail{background:var(--mid);color:var(--gold2);writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;padding:10%;font-size:2.4cqw;letter-spacing:.18em}.l4 .canvas{min-width:0;overflow:hidden;padding:10%;display:grid;grid-template-rows:auto 1fr auto;gap:5%}.l4 .main{align-self:center}
+.l5{padding:8%;display:grid;grid-template-rows:1fr auto auto;gap:4%}.l5 .main{align-self:start;max-width:78%}.l5 .header{align-self:end}.l5 .title{font-size:calc(14cqw * var(--title-scale))}.l5 .footer{border-top:1px solid #cbb787;padding-top:4%;display:grid;grid-template-columns:1fr auto;gap:6%}
+.l6{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto}.l6 .header{padding:12%;display:flex;flex-direction:column;justify-content:center;background:var(--mid);color:var(--paper)}.l6 .header .title{color:var(--paper)}.l6 .main{padding:12%;display:flex;flex-direction:column;justify-content:flex-end}.l6 .footer{grid-column:1/3;padding:5% 6%;display:grid;grid-template-columns:1fr 1fr auto;gap:4%;border-top:1px solid #cbb787}
+.l7{padding:8%;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto 1fr auto;gap:4%}.l7 .header{grid-column:1/3;display:grid;grid-template-columns:1fr auto;gap:5%;align-items:start}.l7 .yearmark{font:600 12cqw/.8 Georgia,serif;color:#d7c8a8}.l7 .main{grid-column:1;align-self:center;max-width:82%}.l7 .sidebar{grid-column:2;grid-row:2/4;writing-mode:vertical-rl;border-left:1px solid #cbb787;padding-left:2cqw}.l7 .footer{grid-column:1}
+.l8{display:grid;grid-template-columns:37% 63%}.l8 .aside{background:#e6dfd3;padding:12%;display:flex;flex-direction:column;justify-content:space-between}.l8 .canvas{min-width:0;overflow:hidden;padding:10%;display:grid;grid-template-rows:auto 1fr auto;gap:5%}.l8 .main{align-self:center}
+.l9{padding:7%;display:grid;grid-template-rows:auto 1fr auto;gap:3%}.l9 .title{font-size:calc(16cqw * var(--title-scale));letter-spacing:-.055em}.l9 .main{align-self:end;display:grid;grid-template-columns:1fr 1fr;gap:7%;padding-bottom:3%}.l9 .footer{display:flex;justify-content:space-between;gap:5%;border-top:1px solid #cbb787;padding-top:3%}
+.l10{padding:7%;display:grid;grid-template-rows:auto 1fr auto;gap:4%}.l10 .header{text-align:center}.l10 .main{display:grid;grid-template-columns:repeat(3,1fr);gap:4%;align-self:center}.l10 .module{border-top:1px solid #cbb787;padding-top:8%}.l10 .footer{text-align:center}
+.l11{padding:11%;display:grid;grid-template-rows:auto 1fr auto;gap:5%;outline:1px solid #b79a61;outline-offset:-6cqw}.l11::before,.l11::after{content:"✦";position:absolute;color:#b79a61;font-size:3cqw}.l11::before{top:3%;left:4%}.l11::after{right:4%;bottom:3%}.l11 .header,.l11 .main,.l11 .footer{text-align:center}.l11 .main{align-self:center}.l11 .rule{margin:auto}
+.l12{padding:8%;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto 1fr auto;gap:4%}.l12 .index{grid-column:2;grid-row:1/4;font:600 18cqw/.8 Georgia,serif;color:#dfd2b5;align-self:start}.l12 .main{align-self:end;max-width:85%}.l12 .footer{border-top:1px solid #cbb787;padding-top:4%}
+.l13{padding:8%;display:grid;grid-template-rows:auto 1fr auto;gap:4%}.l13 .header{text-align:right;margin-left:18%}.l13 .main{align-self:center;border-left:1.5cqw solid var(--gold);padding-left:7%;max-width:88%}.l13 .footer{display:grid;grid-template-columns:1fr 1fr;gap:8%}
+.l14{display:grid;grid-template-rows:auto 1fr auto}.l14 .header{padding:8%;text-align:center;border-bottom:1px solid #cbb787}.l14 .main{padding:8%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}.l14 .footer{padding:6% 8%;background:var(--mid);color:var(--paper);display:grid;grid-template-columns:1fr auto;gap:5%;align-items:center}
+.l15{padding:8%;display:grid;grid-template-columns:32% 68%;grid-template-rows:auto 1fr auto;gap:4%}.l15 .header{grid-column:1/3;display:flex;justify-content:space-between;gap:6%;align-items:start}.l15 .mainlead{grid-column:1;grid-row:2;border-right:1px solid #cbb787;padding-right:10%;display:flex;align-items:flex-end}.l15 .details{grid-column:2;grid-row:2;align-self:center;padding-left:5%}.l15 .footer{grid-column:1/3;border-top:1px solid #cbb787;padding-top:4%;display:flex;justify-content:space-between;gap:5%}
+.l16{padding:10%;display:flex;flex-direction:column;justify-content:center;text-align:center}.l16 .title{font-size:calc(15cqw * var(--title-scale))}.l16 .main{margin:12% 0}.l16 .footer{margin-top:auto;display:grid;gap:2%;justify-items:center}.l16 .orb{width:18cqw;height:18cqw;border:1px solid #cbb787;border-radius:50%;margin:0 auto 7%;display:grid;place-items:center;color:#9b7441;font:italic 5cqw Georgia,serif}
+
+
+/* V6 — INTERFAZ TRIPARTITA DESKTOP. V5 permanece congelada. */
+.variant-lab{
+  grid-column:3;
+  position:sticky;
+  top:0;
+  height:100vh;
+  min-width:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  margin:0;
+  padding:18px;
+  border:0;
+  border-left:1px solid rgba(223,196,143,.16);
+  border-radius:0;
+  background:#09172a;
+}
+.variant-head{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:14px;position:sticky;top:-18px;z-index:12;padding:18px 0 12px;background:linear-gradient(#09172a 82%,rgba(9,23,42,0))}.variant-head h2{margin:0;font:500 25px/1 Georgia,serif;color:var(--gold2)}
+.variant-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start;min-width:0}.variant-card{min-width:0;padding:10px;border:1px solid rgba(223,196,143,.13);border-radius:16px;background:rgba(7,20,38,.56);overflow:hidden}.variant-card.selected{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,161,90,.12)}
+.variant-card .sheet{cursor:pointer}.variant-code{font:500 20px/1 Georgia,serif;color:var(--gold2)}.variant-name{font-size:10px;color:rgba(243,240,234,.58);text-align:right}.variant-meta{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+/* V1 conserva exactamente el diseño base. */
+/* V2: bloque editorial compacto. */
+.sheet.variant-v2 .header{text-align:center;justify-items:center}.sheet.variant-v2 .title{font-size:calc(10.2cqw * var(--title-scale));line-height:.94}.sheet.variant-v2 .main{display:grid!important;grid-template-columns:1fr 1fr!important;gap:calc(3cqw * var(--space-scale))!important;align-items:start}.sheet.variant-v2 .main>.rule{display:none}.sheet.variant-v2 .footer{display:flex!important;justify-content:space-between!important;align-items:end!important;gap:2cqw!important;text-align:left!important}.sheet.variant-v2 .footer>*{flex:1}
+/* V3: jerarquía de título y datos en polos opuestos. */
+.sheet.variant-v3 .header{text-align:left!important;align-items:start!important;justify-items:start!important}.sheet.variant-v3 .title{font-size:calc(14cqw * var(--title-scale));line-height:.82;max-width:88%}.sheet.variant-v3 .subtitle{max-width:62%;margin-top:1.5cqw}.sheet.variant-v3 .main{margin-top:auto!important;max-width:68%;align-self:flex-start!important}.sheet.variant-v3 .footer{margin-top:auto!important;text-align:right!important;justify-items:end!important;align-items:end!important}.sheet.variant-v3 .mark{order:-1}
+/* V4: riel informativo; no modifica imagen. */
+.sheet.variant-v4 .header{max-width:72%;border-left:1px solid var(--gold);padding-left:3.5cqw;text-align:left!important;justify-items:start!important}.sheet.variant-v4 .main{max-width:72%;margin-left:auto!important;border-top:1px solid rgba(161,123,62,.45);padding-top:3cqw}.sheet.variant-v4 .footer{width:72%;margin-left:auto!important;display:grid!important;grid-template-columns:1fr auto!important;gap:2cqw!important;text-align:left!important}.sheet.variant-v4 .mark{grid-column:1/-1;border-top:1px solid rgba(161,123,62,.3);padding-top:1.5cqw}
+/* En fondos completos, las variantes reciben un plano protector sin alterar el recorte. */
+.sheet.l9.variant-v2>*:not(.image-region),.sheet.l9.variant-v3>*:not(.image-region),.sheet.l9.variant-v4>*:not(.image-region){text-shadow:0 1px 8px rgba(243,240,234,.35)}
+
+/* Desktop intermedio: catálogo en 2 columnas, sin desborde horizontal. */
+@media(max-width:1500px){
+  .app{grid-template-columns:290px minmax(0,1fr) 330px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Tablet: variantes pasan debajo del catálogo, en dos columnas. */
+@media(max-width:1120px){
+  .app{grid-template-columns:280px minmax(0,1fr)}
+  .workspace{grid-column:2}
+  .variant-lab{grid-column:2;position:relative;top:auto;height:auto;border-left:0;border-top:1px solid rgba(223,196,143,.16);padding:18px}
+  .variant-head{position:relative;top:auto;background:transparent;padding:0}
+  .variant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Móvil: flujo único vertical. */
+@media(max-width:760px){
+  .app{grid-template-columns:1fr}
+  .panel,.workspace,.variant-lab{grid-column:1}
+  .panel{position:relative;height:auto}
+  .grid,.variant-grid{grid-template-columns:1fr}
+  .top{position:relative}
+  .statusbar{justify-content:flex-start}
+  .variant-lab{height:auto}
+}
 </style>
 </head>
 <body>
-<header class="topbar"><div class="topbar-inner"><div><div class="brand">SoyAutoconocimiento</div><div class="eyebrow">Laboratorio de decisión · 16 estructuras · Tarot</div></div><div class="toolbar"><button class="control active" data-filter="all">Ver 16</button><button class="control" data-filter="favorites">Favoritas</button><button class="control" id="openCompare">Comparar selección</button><button class="control" id="clearAll">Limpiar</button></div></div></header>
-<section class="intro"><div><h1>Una sola variable: el layout</h1><p>Las 16 alternativas mantienen idénticos fotografía, paleta, tipografía y contenido. Solo cambia la posición, proporción y relación espacial entre imagen, título, información y marca.</p></div><div class="status" id="status">0 favoritas · 0 para comparar</div></section>
-<main class="matrix" id="matrix"></main>
-<div class="compare" id="compare"><div class="compare-inner"><div class="compare-head"><strong>Comparación lado a lado</strong><button class="close" id="close">×</button></div><div class="compare-grid"><div class="slot" id="slot1">Elige una alternativa</div><div class="slot" id="slot2">Elige una segunda alternativa</div></div></div></div>
+<div class="app">
+  <aside class="panel">
+    <div class="brand">SoyAutoconocimiento</div>
+    <div class="small">Canvas maestro 1080 × 1350 · 16 layouts · sin imagen</div>
+    <div class="notice small">Todos los diseños se renderizan en un canvas maestro 4:5 equivalente a 1080 × 1350 px. El motor adapta tipografía y espaciado sin cambiar la estructura, ocultar contenido ni modificar las dimensiones del flyer.</div>
+    <section class="image-controls">
+      <h2>Fase 2 · Imagen</h2>
+      <div class="small">La imagen es una región estructural declarada por cada layout. No modifica el canvas.</div>
+      <div class="segmented" id="mode-switch">
+        <button data-mode="text" class="active">Solo texto</button>
+        <button data-mode="zone">Zona simulada</button>
+        <button data-mode="real">Imagen real</button>
+      </div>
+      <div class="upload-row"><input id="image-file" type="file" accept="image/*"><button id="clear-image" type="button">Quitar</button></div>
+      <div class="selected-info" id="selected-info"></div>
+      <div class="handoff-actions">
+        <button id="download-json" type="button">Layout JSON</button>
+        <button id="download-brief" type="button">Brief imagen</button>
+        <button id="download-prompt" type="button">Prompt agente</button>
+        <button id="download-html" type="button">Flyer HTML</button>
+      </div>
+    </section>
+    <div class="fields" id="fields"></div>
+    <div class="panel-actions"><button id="reset">Restablecer</button><button id="clear">Vaciar</button></div>
+  </aside>
+  <section class="workspace">
+    <header class="top">
+      <div><h1>Catálogo tripartito de layouts</h1><div class="small">Panel fijo · catálogo base en 3 columnas · variantes contextuales en 1 columna · sin scroll horizontal.</div></div>
+      <div class="statusbar" id="statusbar"></div>
+    </header>
+    <main class="grid" id="grid"></main>
+  </section>
+  <aside class="variant-lab" aria-labelledby="variant-title">
+    <div class="variant-head"><div><h2 id="variant-title">Variaciones del diseño seleccionado</h2><div class="small" id="variant-summary">La imagen y el canvas permanecen fijos; solo cambia la composición interna del contenido.</div></div><div class="statuspill" id="variant-selection"></div></div>
+    <div class="variant-grid" id="variant-grid"></div>
+  </aside>
+</div>
 <script>
-const common={
- top:`<div><div class="kicker">Curso online · 2026</div><h2 class="title">Tarot</h2><div class="subtitle">Un camino hacia adentro</div></div>`,
- info:`<div class="details">Arcanos Mayores y Menores · Tiradas de Tarot · Relación con tu carta astral</div>`,
- meta:`<div class="meta">ONLINE · VÍA ZOOM<br>ENTREVISTA PREVIA</div>`
-};
-const layouts=[
- {id:'a1',family:'A · Divididos',name:'Texto izquierda / imagen derecha',html:`<div class="flyer l-a1"><div class="copy">${common.top}<div><div class="rule"></div><br>${common.info}<br>${common.meta}</div></div><div class="photo"></div></div>`},
- {id:'a2',family:'A · Divididos',name:'Imagen izquierda / texto derecha',html:`<div class="flyer l-a2"><div class="photo"></div><div class="copy">${common.top}<div class="foot">${common.info}<br>${common.meta}</div></div></div>`},
- {id:'a3',family:'A · Divididos',name:'Imagen superior / banda inferior',html:`<div class="flyer l-a3"><div class="photo"></div><div class="copy"><div class="main">${common.top}</div><div class="side">${common.info}<br><br>${common.meta}</div></div></div>`},
- {id:'a4',family:'A · Divididos',name:'Imagen enmarcada / información vertical',html:`<div class="flyer l-a4"><div class="photo"></div><div class="copy"><div>${common.top}${common.info}</div><div class="side">ONLINE · ZOOM · 2026</div></div></div>`},
- {id:'b1',family:'B · Inmersivos',name:'Overlay lateral izquierdo',html:`<div class="flyer l-b1 photo"><div class="copy">${common.top}<div>${common.info}<br>${common.meta}</div></div></div>`},
- {id:'b2',family:'B · Inmersivos',name:'Overlay inferior',html:`<div class="flyer l-b2 photo"><div class="copy"><div>${common.top}${common.info}</div>${common.meta}</div></div>`},
- {id:'b3',family:'B · Inmersivos',name:'Cartel centrado sobre imagen',html:`<div class="flyer l-b3 photo"><div class="frame">${common.top}${common.info}</div></div>`},
- {id:'b4',family:'B · Inmersivos',name:'Panel derecho sobre imagen',html:`<div class="flyer l-b4 photo"><div class="copy">${common.top}<div>${common.info}<br>${common.meta}</div></div></div>`},
- {id:'c1',family:'C · Modulares',name:'Imagen dominante / columna lateral',html:`<div class="flyer l-c1"><div class="photo"></div><div>${common.top}</div><div>${common.info}</div><div>${common.meta}</div></div>`},
- {id:'c2',family:'C · Modulares',name:'Díptico asimétrico',html:`<div class="flyer l-c2"><div class="titlebox">${common.top}</div><div class="photo"></div><div class="bottom">${common.info}<br>${common.meta}</div></div>`},
- {id:'c3',family:'C · Modulares',name:'Panorámica superior / dos columnas',html:`<div class="flyer l-c3"><div class="photo"></div><div>${common.top}</div><div class="right">${common.info}<br><br>${common.meta}</div></div>`},
- {id:'c4',family:'C · Modulares',name:'Imagen superior / tríptico informativo',html:`<div class="flyer l-c4"><div class="photo"></div><div>${common.top}</div><div class="center">${common.info}</div><div class="right">${common.meta}</div></div>`},
- {id:'d1',family:'D · Cartel',name:'Ceremonial enmarcado',html:`<div class="flyer l-d1"><div class="head">${common.top}</div><div class="photo"></div><div class="foot">${common.info}${common.meta}</div></div>`},
- {id:'d2',family:'D · Cartel',name:'Riel vertical de marca',html:`<div class="flyer l-d2"><div class="rail"><div class="kicker">SOYAUTOCONOCIMIENTO</div><div class="meta">2026</div></div><div class="main">${common.top}<div class="photo"></div><div>${common.info}<br>${common.meta}</div></div></div>`},
- {id:'d3',family:'D · Cartel',name:'Tipografía dominante',html:`<div class="flyer l-d3">${common.top}<div class="photo"></div><div class="foot">${common.info}${common.meta}</div></div>`},
- {id:'d4',family:'D · Cartel',name:'Composición circular central',html:`<div class="flyer l-d4"><div class="circle"><div class="inner">${common.top}</div></div><div class="meta"><span>ONLINE · ZOOM</span><span>2026</span></div></div>`}
+const schema=[
+ ['brand','Marca','SoyAutoconocimiento',40,'input'],
+ ['type','Tipo de actividad','Curso online · 2026',50,'input'],
+ ['title','Título principal','Tarot',54,'input'],
+ ['subtitle','Bajada','Un camino hacia adentro',80,'input'],
+ ['description','Descripción breve','El Tarot es un lenguaje simbólico para comprender nuestros procesos y abrir nuevas miradas sobre la vida.',260,'textarea'],
+ ['contents','Contenidos principales','Arcanos Mayores y Menores · Tiradas de Tarot · Relación con tu carta astral',220,'textarea'],
+ ['operations','Información operativa','Modalidad online · Vía Zoom\nEntrevista previa a inscripción',180,'textarea'],
+ ['cta','Acción o contacto','Solicita una entrevista',80,'input']
 ];
-const matrix=document.getElementById('matrix');let favorites=new Set(JSON.parse(localStorage.getItem('soy-layout-favorites')||'[]'));let compare=[];
-function render(){matrix.innerHTML='';layouts.forEach((l,i)=>{const card=document.createElement('article');card.className='card'+(favorites.has(l.id)?' is-favorite':'');card.dataset.id=l.id;card.innerHTML=`<div class="card-head"><div class="code">${String.fromCharCode(65+Math.floor(i/4))}${(i%4)+1}</div><div class="label"><strong>${l.family}</strong><br>${l.name}</div></div>${l.html}<div class="actions"><button data-fav="${l.id}" class="${favorites.has(l.id)?'active':''}">${favorites.has(l.id)?'★ Favorita':'☆ Favorita'}</button><button data-cmp="${l.id}" class="${compare.includes(l.id)?'active':''}">${compare.includes(l.id)?'✓ Comparar':'Comparar'}</button></div>`;matrix.appendChild(card)});update()}
-function update(){document.getElementById('status').textContent=`${favorites.size} favoritas · ${compare.length} para comparar`;localStorage.setItem('soy-layout-favorites',JSON.stringify([...favorites]))}
-function clone(id){return document.querySelector(`.card[data-id="${id}"] .flyer`)?.cloneNode(true)}
-document.addEventListener('click',e=>{const f=e.target.closest('[data-fav]');if(f){favorites.has(f.dataset.fav)?favorites.delete(f.dataset.fav):favorites.add(f.dataset.fav);render();return}const c=e.target.closest('[data-cmp]');if(c){const id=c.dataset.cmp;if(compare.includes(id))compare=compare.filter(x=>x!==id);else{if(compare.length===2)compare.shift();compare.push(id)}render();return}const filter=e.target.closest('[data-filter]');if(filter){document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===filter));document.querySelectorAll('.card').forEach(card=>card.hidden=filter.dataset.filter==='favorites'&&!favorites.has(card.dataset.id))}});
-document.getElementById('openCompare').onclick=()=>{[1,2].forEach((n,i)=>{const slot=document.getElementById('slot'+n);slot.innerHTML='';const node=compare[i]&&clone(compare[i]);if(node)slot.appendChild(node);else slot.textContent=i?'Elige una segunda alternativa':'Elige una alternativa'});document.getElementById('compare').classList.add('open')};
-document.getElementById('close').onclick=()=>document.getElementById('compare').classList.remove('open');document.getElementById('clearAll').onclick=()=>{favorites.clear();compare=[];render()};render();
+const defaults=Object.fromEntries(schema.map(x=>[x[0],x[2]]));
+let data={...defaults,...safeParse(localStorage.getItem('soy-adaptive-data'),{})};
+let favorites=new Set(safeParse(localStorage.getItem('soy-adaptive-favorites'),[]));
+let imageMode=localStorage.getItem('soy-image-mode')||'text';
+let imageData='';
+let selectedIndex=Number(localStorage.getItem('soy-selected-layout')||0);
+let selectedVariant=localStorage.getItem('soy-selected-variant')||'v1';
+const imageRegions=[
+ {x:0,y:0,w:100,h:34,role:'protagonista superior',fit:'cover',focus:'centro 38%',negativeSpace:'zona inferior'},
+ {x:58,y:0,w:42,h:100,role:'panel lateral',fit:'cover',focus:'centro',negativeSpace:'columna izquierda'},
+ {x:18,y:31,w:64,h:31,role:'ventana central',fit:'cover',focus:'centro',negativeSpace:'cabecera y pie'},
+ {x:15,y:0,w:85,h:39,role:'franja superior',fit:'cover',focus:'centro 35%',negativeSpace:'cuerpo inferior'},
+ {x:52,y:0,w:48,h:62,role:'bloque editorial',fit:'cover',focus:'centro',negativeSpace:'lateral izquierdo'},
+ {x:50,y:0,w:50,h:72,role:'díptico',fit:'cover',focus:'centro',negativeSpace:'mitad izquierda'},
+ {x:0,y:52,w:46,h:48,role:'ancla inferior',fit:'cover',focus:'centro',negativeSpace:'superior y derecha'},
+ {x:0,y:0,w:37,h:100,role:'columna de imagen',fit:'cover',focus:'centro',negativeSpace:'columna derecha'},
+ {x:0,y:0,w:100,h:100,role:'atmósfera de fondo',fit:'cover',focus:'centro',negativeSpace:'protegido por velo'},
+ {x:56,y:7,w:38,h:31,role:'ventana superior derecha',fit:'cover',focus:'centro',negativeSpace:'resto del canvas'},
+ {x:8,y:27,w:84,h:30,role:'banda central',fit:'cover',focus:'centro',negativeSpace:'arriba y abajo'},
+ {x:48,y:0,w:52,h:100,role:'mitad vertical',fit:'cover',focus:'centro',negativeSpace:'mitad izquierda'},
+ {x:0,y:0,w:100,h:26,role:'cabecera fotográfica',fit:'cover',focus:'centro 35%',negativeSpace:'cuerpo inferior'},
+ {x:0,y:66,w:100,h:34,role:'pie fotográfico',fit:'cover',focus:'centro 64%',negativeSpace:'cuerpo superior'},
+ {x:56,y:18,w:44,h:52,role:'ventana lateral',fit:'cover',focus:'centro',negativeSpace:'columna izquierda'},
+ {x:21,y:21,w:58,h:58,role:'medallón central',fit:'cover',focus:'centro',negativeSpace:'perímetro'}
+];
+
+const fields=document.getElementById('fields'),grid=document.getElementById('grid'),variantGrid=document.getElementById('variant-grid');
+const variantDefs=[{id:'v1',name:'Base original',note:'Jerarquía congelada del diseño base'},{id:'v2',name:'Editorial compacto',note:'Cuerpo en dos columnas y pie horizontal'},{id:'v3',name:'Título protagonista',note:'Título dominante y datos en el polo opuesto'},{id:'v4',name:'Riel informativo',note:'Contenido organizado por un eje lateral'}];
+const names=['Clásico vertical','Doble columna','Centro editorial','Riel lateral','Título de base','Díptico contraste','Asimetría con índice','Columna editorial','Titular monumental','Tríptico modular','Marco ceremonial','Índice de colección','Eje dorado','Banda institucional','Lectura desplazada','Cartel central'];
+function safeParse(v,fallback){try{return v?JSON.parse(v):fallback}catch{return fallback}}
+function text(v=''){return String(v)}
+function esc(v=''){return text(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])).replace(/\n/g,'<br>')}
+function block(cls,key,label=''){return `<div class="${cls} empty">${label?`<div class="label">${label}</div>`:''}${esc(data[key])}</div>`}
+function save(){localStorage.setItem('soy-adaptive-data',JSON.stringify(data));localStorage.setItem('soy-adaptive-favorites',JSON.stringify([...favorites]))}
+function renderFields(){fields.innerHTML='';schema.forEach(([key,label,def,max,type])=>{const wrap=document.createElement('div');wrap.className='field';const value=text(data[key]);wrap.innerHTML=`<label for="${key}">${label}</label>${type==='textarea'?`<textarea id="${key}" rows="3" maxlength="${max}">${esc(value).replace(/<br>/g,'\n')}</textarea>`:`<input id="${key}" maxlength="${max}" value="${esc(value)}">`}<div class="count" id="count-${key}"></div>`;fields.appendChild(wrap);const el=wrap.querySelector('#'+key);el.addEventListener('input',()=>{data[key]=el.value;save();renderGrid();updateCount(key,max)});updateCount(key,max)})}
+function updateCount(key,max){const n=text(data[key]).length,c=document.getElementById('count-'+key);if(!c)return;c.textContent=`${n}/${max}`;c.classList.toggle('warn',n>max*.75);c.classList.toggle('over',n>=max)}
+function commonHeader(){return `<div class="header zone stack">${block('kicker','type')}<h2 class="title empty">${esc(data.title)}</h2>${block('subtitle','subtitle')}</div>`}
+function commonBody(){return `<div class="main zone stack">${block('desc','description')}<div class="rule"></div>${block('content','contents')}</div>`}
+function commonFooter(){return `<div class="footer zone microstack">${block('ops','operations')}${block('cta','cta')}${block('mark','brand')}</div>`}
+function imageRegion(i){const r=imageRegions[i];const label=`Imagen · ${r.role}<br>${Math.round(r.w*10.8)} × ${Math.round(r.h*13.5)} px<br>Foco: ${r.focus}`;return `<div class="image-region ${imageData?'has-image':''}" data-label="${label}">${imageData?`<img src="${imageData}" alt="">`:''}</div>`}
+function layout(i){const H=commonHeader(),B=commonBody(),F=commonFooter();switch(i){
+case 0:return `<div class="sheet l1 mode-${imageMode}">${imageRegion(i)}${H}${B}${F}</div>`;
+case 1:return `<div class="sheet l2 mode-${imageMode}">${imageRegion(i)}${H}${B}<aside class="aside zone stack">${block('mark','brand')}${block('ops','operations','Información')}${block('cta','cta')}</aside><div class="footer zone">${block('subtitle','subtitle')}</div></div>`;
+case 2:return `<div class="sheet l3 mode-${imageMode}">${imageRegion(i)}${H}${B}${F}</div>`;
+case 3:return `<div class="sheet l4 mode-${imageMode}">${imageRegion(i)}<div class="rail mark">${esc(data.brand)}</div><div class="canvas">${H}${B}<div class="footer zone microstack">${block('ops','operations')}${block('cta','cta')}</div></div></div>`;
+case 4:return `<div class="sheet l5 mode-${imageMode}">${imageRegion(i)}<div class="main zone stack">${block('desc','description')}${block('content','contents')}</div>${H}${F}</div>`;
+case 5:return `<div class="sheet l6 mode-${imageMode}">${imageRegion(i)}${H}<div class="main zone stack">${block('subtitle','subtitle')}${block('desc','description')}<div class="rule"></div>${block('content','contents')}</div>${F}</div>`;
+case 6:return `<div class="sheet l7 mode-${imageMode}">${imageRegion(i)}<div class="header zone">${block('kicker','type')}<h2 class="title empty">${esc(data.title)}</h2>${block('subtitle','subtitle')}</div><div class="yearmark">26</div>${B}<div class="sidebar mark">${esc(data.brand)}</div><div class="footer zone microstack">${block('ops','operations')}${block('cta','cta')}</div></div>`;
+case 7:return `<div class="sheet l8 mode-${imageMode}">${imageRegion(i)}<aside class="aside zone stack">${block('mark','brand')}${block('ops','operations','Datos')}${block('cta','cta')}</aside><div class="canvas">${H}${B}<div class="footer zone">${block('subtitle','subtitle')}</div></div></div>`;
+case 8:return `<div class="sheet l9 mode-${imageMode}">${imageRegion(i)}${H}<div class="main zone"><div class="stack">${block('desc','description')}</div><div class="stack">${block('content','contents')}</div></div>${F}</div>`;
+case 9:return `<div class="sheet l10 mode-${imageMode}">${imageRegion(i)}${H}<div class="main zone"><div class="module">${block('desc','description','Propuesta')}</div><div class="module">${block('content','contents','Contenidos')}</div><div class="module">${block('ops','operations','Información')}</div></div><div class="footer zone microstack">${block('cta','cta')}${block('mark','brand')}</div></div>`;
+case 10:return `<div class="sheet l11 mode-${imageMode}">${imageRegion(i)}${H}${B}${F}</div>`;
+case 11:return `<div class="sheet l12 mode-${imageMode}">${imageRegion(i)}${H}<div class="index">12</div>${B}${F}</div>`;
+case 12:return `<div class="sheet l13 mode-${imageMode}">${imageRegion(i)}${H}${B}<div class="footer zone">${block('ops','operations')}${block('cta','cta')}${block('mark','brand')}</div></div>`;
+case 13:return `<div class="sheet l14 mode-${imageMode}">${imageRegion(i)}${H}<div class="main zone"><div class="stack">${block('desc','description')}</div><div class="stack">${block('content','contents')}</div></div><div class="footer zone">${block('ops','operations')}${block('cta','cta')}</div></div>`;
+case 14:return `<div class="sheet l15 mode-${imageMode}">${imageRegion(i)}<div class="header zone">${block('kicker','type')}<h2 class="title empty">${esc(data.title)}</h2>${block('mark','brand')}</div><div class="mainlead zone">${block('subtitle','subtitle')}</div><div class="details zone stack">${block('desc','description')}${block('content','contents')}</div><div class="footer zone">${block('ops','operations')}${block('cta','cta')}</div></div>`;
+case 15:return `<div class="sheet l16 mode-${imageMode}">${imageRegion(i)}<div class="orb">SOY</div>${H}<div class="main zone stack">${block('desc','description')}<div class="rule"></div>${block('content','contents')}</div>${F}</div>`;
+}}
+function layoutWithVariant(i,variant='v1'){return layout(i).replace('class="sheet ','class="sheet variant-'+variant+' ')}
+function renderVariantGrid(){
+  if(!variantGrid)return;
+  variantGrid.innerHTML='';
+  variantDefs.forEach(v=>{
+    const card=document.createElement('article');
+    card.className='variant-card'+(selectedVariant===v.id?' selected':'');
+    card.dataset.variant=v.id;
+    card.innerHTML=`<div class="variant-meta"><div><div class="variant-code">${layoutCode(selectedIndex)}.${v.id.slice(1)}</div><div class="badge ok" data-badge>Compatible</div></div><div><div class="variant-name">${v.name}</div><div class="small">${v.note}</div></div></div>${layoutWithVariant(selectedIndex,v.id)}<div class="canvas-meta"><span>Imagen congelada</span><span>1080 × 1350</span></div>`;
+    variantGrid.appendChild(card);
+  });
+  requestAnimationFrame(()=>variantGrid.querySelectorAll('.variant-card').forEach(card=>{const state=adaptSheet(card.querySelector('.sheet'));const badge=card.querySelector('[data-badge]');badge.className='badge '+state;badge.textContent=state==='ok'?'Compatible':state==='adjusted'?'Ajustado':'Excesivo'}));
+  document.getElementById('variant-selection').textContent=`Selección: ${layoutCode(selectedIndex)}.${selectedVariant.slice(1)}`;
+  document.getElementById('variant-summary').textContent=`${names[selectedIndex]} · ${variantDefs.find(v=>v.id===selectedVariant).name}. La región de imagen permanece idéntica en las cuatro pruebas.`;
+}
+function isOverflowing(el){if(el.scrollHeight>el.clientHeight+1||el.scrollWidth>el.clientWidth+1)return true;return [...el.querySelectorAll('.zone')].some(z=>z.scrollHeight>z.clientHeight+1||z.scrollWidth>z.clientWidth+1||z.getBoundingClientRect().right>el.getBoundingClientRect().right+1||z.getBoundingClientRect().bottom>el.getBoundingClientRect().bottom+1)}
+function adaptSheet(sheet){sheet.classList.remove('adjust-1','adjust-2','adjust-3','excessive');let level=0;while(isOverflowing(sheet)&&level<3){level++;sheet.classList.add('adjust-'+level)}const excessive=isOverflowing(sheet);if(excessive)sheet.classList.add('excessive');return excessive?'excessive':level?'adjusted':'ok'}
+function renderGrid(){grid.innerHTML='';for(let i=0;i<16;i++){const id='l'+(i+1),code=String.fromCharCode(65+Math.floor(i/4))+(i%4+1),card=document.createElement('article');card.className='card'+(i===selectedIndex?' selected':'');card.dataset.layoutIndex=i;card.innerHTML=`<div class="card-head"><div><div class="code">${code}</div><div class="badge ok" data-badge>Compatible</div></div><div class="name">${names[i]}</div></div>${layout(i)}<div class="canvas-meta"><span>1080 × 1350</span><span>4:5</span></div><div class="card-actions"><button data-fav="${id}" class="${favorites.has(id)?'active':''}">${favorites.has(id)?'★ Favorita':'☆ Favorita'}</button></div>`;grid.appendChild(card)}requestAnimationFrame(()=>{const counts={ok:0,adjusted:0,excessive:0};grid.querySelectorAll('.card').forEach(card=>{const state=adaptSheet(card.querySelector('.sheet'));counts[state]++;const badge=card.querySelector('[data-badge]');badge.className='badge '+state;badge.textContent=state==='ok'?'Compatible':state==='adjusted'?'Ajustado':'Excesivo'});document.getElementById('statusbar').innerHTML=`<span class="statuspill">${counts.ok} compatibles</span><span class="statuspill">${counts.adjusted} ajustados</span><span class="statuspill">${counts.excessive} excesivos</span><span class="statuspill">${favorites.size} favoritas</span>`;updateSelectedInfo();renderVariantGrid()})}
+
+function layoutCode(i){return String.fromCharCode(65+Math.floor(i/4))+(i%4+1)}
+function selectedManifest(){const r=imageRegions[selectedIndex];return {version:'soy-layout-handoff-v3-triptych',layout:{index:selectedIndex,id:'l'+(selectedIndex+1),code:layoutCode(selectedIndex),name:names[selectedIndex],contentVariant:{id:selectedVariant,code:layoutCode(selectedIndex)+'.'+selectedVariant.slice(1),name:variantDefs.find(v=>v.id===selectedVariant).name},canvas:{width:1080,height:1350,ratio:'4:5'},safeArea:{insetPercent:5.2},imageRegion:{...r,units:'percent'}},content:{...data},image:{included:Boolean(imageData),mode:imageMode},constraints:['No alterar el canvas 1080x1350','No ocultar ni recortar contenido','Conservar jerarquía central del layout','Generar imagen sin texto ni logotipos']}}
+function imageBrief(){const m=selectedManifest(),r=m.layout.imageRegion;return `# IMAGE BRIEF — ${m.layout.contentVariant.code} · ${m.layout.name} / ${m.layout.contentVariant.name}\n\nCanvas final: 1080 × 1350 px (4:5).\nRol de imagen: ${r.role}.\nRegión: x ${r.x}%, y ${r.y}%, ancho ${r.w}%, alto ${r.h}%.\nAjuste: ${r.fit}.\nFoco sugerido: ${r.focus}.\nEspacio negativo protegido: ${r.negativeSpace}.\n\nLa imagen debe producirse sin texto, logotipos ni marcos. Debe conservar una zona visualmente tranquila donde el layout ubica contenido. La composición final del flyer no puede ser rediseñada por el generador.`}
+function agentPrompt(){const m=selectedManifest(),r=m.layout.imageRegion;return `Genera únicamente la imagen destinada al layout ${m.layout.contentVariant.code} (${m.layout.name} / ${m.layout.contentVariant.name}) de SoyAutoconocimiento. El flyer final mide 1080 × 1350 px. La imagen ocupará una región ubicada en x=${r.x}%, y=${r.y}%, ancho=${r.w}%, alto=${r.h}%, con rol “${r.role}”, ajuste ${r.fit} y foco ${r.focus}. Reserva espacio negativo en ${r.negativeSpace}. No añadas texto, letras, logotipos, bordes ni rediseñes el flyer. La imagen debe poder recortarse exactamente dentro de esa región y conversar con una identidad editorial en azul profundo, greige y oro viejo.`}
+function download(name,content,type='text/plain'){const blob=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function updateSelectedInfo(){const m=selectedManifest(),r=m.layout.imageRegion,el=document.getElementById('selected-info');if(!el)return;el.innerHTML=`<strong>${m.layout.contentVariant.code} · ${m.layout.name} / ${m.layout.contentVariant.name}</strong><br>Imagen: ${r.role} · ${r.w}% × ${r.h}%<br>Foco: ${r.focus} · espacio negativo: ${r.negativeSpace}`}
+function standaloneHTML(){const card=document.querySelector(`.variant-card[data-variant="${selectedVariant}"] .sheet`);const css=document.querySelector('style').textContent;return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${layoutCode(selectedIndex)}.${selectedVariant.slice(1)} — Flyer</title><style>${css}\nbody{display:grid;place-items:center;min-height:100vh;padding:24px}.sheet{width:min(1080px,100vw);height:auto;aspect-ratio:4/5}.sheet::after{display:none}</style></head><body>${card.outerHTML}<script>document.querySelectorAll('.image-region img').forEach(i=>i.removeAttribute('loading'))<\/script></body></html>`}
+function syncModeButtons(){document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===imageMode))}
+document.getElementById('mode-switch').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(!b)return;imageMode=b.dataset.mode;localStorage.setItem('soy-image-mode',imageMode);syncModeButtons();renderGrid()});
+document.getElementById('image-file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{imageData=reader.result;imageMode='real';localStorage.setItem('soy-image-mode',imageMode);syncModeButtons();renderGrid()};reader.readAsDataURL(f)});
+document.getElementById('clear-image').onclick=()=>{imageData='';document.getElementById('image-file').value='';renderGrid()};
+document.getElementById('download-json').onclick=()=>download(`${layoutCode(selectedIndex)}.${selectedVariant.slice(1)}-layout.json`,JSON.stringify(selectedManifest(),null,2),'application/json');
+document.getElementById('download-brief').onclick=()=>download(`${layoutCode(selectedIndex)}.${selectedVariant.slice(1)}-image-brief.md`,imageBrief(),'text/markdown');
+document.getElementById('download-prompt').onclick=()=>download(`${layoutCode(selectedIndex)}.${selectedVariant.slice(1)}-agent-prompt.md`,agentPrompt(),'text/markdown');
+document.getElementById('download-html').onclick=()=>download(`${layoutCode(selectedIndex)}.${selectedVariant.slice(1)}-flyer.html`,standaloneHTML(),'text/html');
+
+document.addEventListener('click',e=>{const variant=e.target.closest('.variant-card[data-variant]');if(variant){selectedVariant=variant.dataset.variant;localStorage.setItem('soy-selected-variant',selectedVariant);renderVariantGrid();updateSelectedInfo();return}const fav=e.target.closest('[data-fav]');if(fav){favorites.has(fav.dataset.fav)?favorites.delete(fav.dataset.fav):favorites.add(fav.dataset.fav);save();renderGrid();return}const card=e.target.closest('.card[data-layout-index]');if(card){selectedIndex=Number(card.dataset.layoutIndex);localStorage.setItem('soy-selected-layout',selectedIndex);renderGrid()}});
+document.getElementById('reset').onclick=()=>{data={...defaults};save();renderFields();renderGrid()};
+document.getElementById('clear').onclick=()=>{data=Object.fromEntries(schema.map(x=>[x[0],'']));save();renderFields();renderGrid()};
+window.addEventListener('resize',()=>{clearTimeout(window.__rt);window.__rt=setTimeout(renderGrid,120)});
+syncModeButtons();renderFields();renderGrid();
 </script>
 </body>
 </html>
